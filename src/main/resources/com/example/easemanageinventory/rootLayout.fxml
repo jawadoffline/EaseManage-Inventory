@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.easemanageinventory.Controller.ApplicationController">
+    <items>
+        <AnchorPane fx:id="leftPane" minWidth="200" maxWidth="200"/>
+        <AnchorPane fx:id="centerPane"/> <!-- Placeholder for dynamic content -->
+    </items>
+</SplitPane>
