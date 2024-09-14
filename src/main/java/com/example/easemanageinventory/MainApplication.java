@@ -1,8 +1,8 @@
 package com.example.easemanageinventory;
 
 import com.example.easemanageinventory.Controller.ApplicationController;
-import com.example.easemanageinventory.Controller.Login;
-import com.example.easemanageinventory.Controller.Register;
+import com.example.easemanageinventory.Controller.LoginController;
+import com.example.easemanageinventory.Controller.RegisterController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -61,7 +61,7 @@ public class MainApplication extends Application {
             BorderPane loginPage = loader.load();
 
             rootLayout.setCenter(loginPage);
-            Login loginController = loader.getController();
+            LoginController loginController = loader.getController();
             loginController.setAppController(applicationController);
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,7 +75,7 @@ public class MainApplication extends Application {
             BorderPane registerPage = loader.load();
 
             rootLayout.setCenter(registerPage);
-            Register registerController = loader.getController();
+            RegisterController registerController = loader.getController();
             registerController.setAppController(applicationController);
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,8 +87,5 @@ public class MainApplication extends Application {
         launch();
     }
 
-    public void exitApplication() {
-        Platform.exit();
-    }
 }
 

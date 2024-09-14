@@ -7,6 +7,7 @@ module com.example.easemanageinventory {
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
     requires java.sql;
+    requires org.postgresql.jdbc;
 
 
     opens com.example.easemanageinventory to javafx.fxml;
