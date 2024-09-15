@@ -67,22 +67,6 @@ public class MainApplication extends Application {
             e.printStackTrace();
         }
     }
-
-    public void showRegisterPage() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApplication.class.getResource("register.fxml"));
-            BorderPane registerPage = loader.load();
-
-            rootLayout.setCenter(registerPage);
-            RegisterController registerController = loader.getController();
-            registerController.setAppController(applicationController);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public static void main(String[] args) {
         launch();
     }

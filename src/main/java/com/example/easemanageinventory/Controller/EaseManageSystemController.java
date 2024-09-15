@@ -1,7 +1,7 @@
 package com.example.easemanageinventory.Controller;
 
 import com.example.easemanageinventory.Database.DBSystem;
-import com.example.easemanageinventory.Database.User;
+import com.example.easemanageinventory.Model.UserModel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -14,8 +14,8 @@ import java.sql.SQLException;
 
 public class EaseManageSystemController {
 
-    public static void registerUser(User user) throws SQLException {
-        boolean registrationStatus = DBSystem.insertNewUser(user);
+    public static void registerUser(UserModel user) throws SQLException {
+        boolean registrationStatus = DBSystem.registerNewUser(user);
         if (registrationStatus){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("User Created Successfully!");

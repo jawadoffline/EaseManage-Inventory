@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -15,7 +16,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.easemanageinventory.Controller.AdminDashboardController">
    <children>
       <SplitPane dividerPositions="0.09416522241478913" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="694.0" prefWidth="1254.0">
@@ -27,9 +27,9 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="522.0" layoutY="11.0" text="Admin Dashboard">
+                  <Label layoutX="473.0" layoutY="6.0" text="Admin Dashboard" textAlignment="CENTER">
                      <font>
-                        <Font name="Bebas Neue Bold" size="36.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
                   <Button fx:id="logout" layoutX="1132.0" layoutY="15.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="35.0" prefWidth="106.0" text="LOGOUT">
@@ -73,7 +73,7 @@
                                                    </font>
                                                 </Label>
                                                 <PasswordField fx:id="password" layoutX="596.0" layoutY="144.0" prefHeight="26.0" prefWidth="225.0" />
-                                                <ComboBox fx:id="userRole" layoutX="595.0" layoutY="205.0" onAction="#onUserRoleAction" prefHeight="26.0" prefWidth="226.0" promptText="Enter User Role" />
+                                                <ComboBox fx:id="userRole" layoutX="595.0" layoutY="205.0" prefHeight="26.0" prefWidth="226.0" promptText="Enter User Role" />
                                                 <Label layoutX="598.0" layoutY="184.0" text="User Role">
                                                    <font>
                                                       <Font size="14.0" />
@@ -86,12 +86,12 @@
                                                       <Font size="18.0" />
                                                    </font>
                                                 </Label>
-                                                <Button fx:id="addUser" layoutX="595.0" layoutY="273.0" mnemonicParsing="false" onAction="#onAddUserClick" prefHeight="26.0" prefWidth="106.0" text="Add User" />
-                                                <Button fx:id="updateUser" layoutX="595.0" layoutY="307.0" mnemonicParsing="false" onAction="#onUpdateUserClick" prefHeight="26.0" prefWidth="106.0" text="Update User" />
-                                                <Button fx:id="deleteUser" layoutX="595.0" layoutY="342.0" mnemonicParsing="false" onAction="#onDeleteUserClick" prefHeight="26.0" prefWidth="106.0" text="Delete User" />
-                                                <Button fx:id="activateUser" layoutX="715.0" layoutY="273.0" mnemonicParsing="false" onAction="#onActivateUserClick" prefHeight="26.0" prefWidth="106.0" text="Activate User" />
-                                                <Button fx:id="lockUser" layoutX="715.0" layoutY="307.0" mnemonicParsing="false" onAction="#onLockUserClick" prefHeight="26.0" prefWidth="106.0" text="Lock User" />
-                                                <Button fx:id="unlockUser" layoutX="715.0" layoutY="342.0" mnemonicParsing="false" onAction="#onUnlockUserClick" prefHeight="26.0" prefWidth="106.0" text="Unlock User" />
+                                                <Button fx:id="addUser" layoutX="595.0" layoutY="296.0" mnemonicParsing="false" onAction="#onAddUserClick" prefHeight="26.0" prefWidth="106.0" text="Add User" />
+                                                <Button fx:id="updateUser" layoutX="595.0" layoutY="330.0" mnemonicParsing="false" onAction="#onUpdateUserClick" prefHeight="26.0" prefWidth="106.0" text="Update User" />
+                                                <Button fx:id="deleteUser" layoutX="715.0" layoutY="330.0" mnemonicParsing="false" onAction="#onDeleteUserClick" prefHeight="26.0" prefWidth="106.0" text="Delete User" />
+                                                <Button fx:id="activateUser" layoutX="715.0" layoutY="296.0" mnemonicParsing="false" onAction="#onActivateUserClick" prefHeight="26.0" prefWidth="106.0" text="Activate User" />
+                                                <CheckBox fx:id="showPassword" layoutX="716.0" layoutY="175.0" mnemonicParsing="false" text="Show Password" />
+                                                <Button fx:id="clearData" layoutX="595.0" layoutY="260.0" mnemonicParsing="false" onAction="#onClearDataClick" prefHeight="26.0" prefWidth="225.0" text="Clear Data" />
                                              </children>
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -109,6 +109,7 @@
                                                       <Font size="18.0" />
                                                    </font>
                                                 </Label>
+                                                <Button fx:id="refresh" layoutX="277.0" layoutY="8.0" mnemonicParsing="false" onAction="#onRefreshClick" prefHeight="26.0" prefWidth="106.0" text="Refresh" />
                                              </children>
                                           </AnchorPane>
                                       </items>

@@ -1,7 +1,7 @@
 package com.example.easemanageinventory.Controller;
 
-import com.example.easemanageinventory.Database.User;
 import com.example.easemanageinventory.MainApplication;
+import com.example.easemanageinventory.Model.UserModel;
 
 import java.sql.SQLException;
 
@@ -13,16 +13,7 @@ public class ApplicationController {
         this.mainApp = mainApplication;
     }
 
-    public void registerNewUser(User user) throws SQLException {
+    public void registerNewUser(UserModel user) throws SQLException {
         EaseManageSystemController.registerUser(user);
     }
-
-    public void showLoginPage(){
-        mainApp.showLoginPage();
-    }
-
-    public void showRegisterPage(){
-        mainApp.showRegisterPage();
-    }
-
 }

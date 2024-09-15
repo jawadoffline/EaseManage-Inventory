@@ -1,14 +1,19 @@
 package com.example.easemanageinventory.Controller;
 
-import com.example.easemanageinventory.Database.User;
+import com.example.easemanageinventory.Model.User;
 import com.example.easemanageinventory.MainApplication;
+import com.example.easemanageinventory.Model.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -28,12 +33,13 @@ public class RegisterController {
     private ApplicationController applicationController;
     private MainApplication mainApplication;
     private EaseManageSystemController easeManageSystemController;
-    private User user;
+    private UserModel user;
 
 
     @FXML
     private void onRegisterUserButtonClick(ActionEvent event) throws SQLException {
         errorMessage.setText(null);
+        user = new UserModel();
         user.setUsername(username.getText());
         if (Objects.equals(password.getText(), confirmPassword.getText())){
             user.setPassword(password.getText());
@@ -45,17 +51,49 @@ public class RegisterController {
 
     @FXML
     private void onLoginSwitchButtonClick(ActionEvent event){
-        applicationController.showLoginPage();
+        showLoginPage();
+    }
+
+    private void showLoginPage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/easemanageinventory/login.fxml"));
+            Parent loginRoot = loader.load();
+
+            Stage stage = (Stage) username.getScene().getWindow();
+            stage.setHeight(400);
+            stage.setWidth(600);
+            stage.centerOnScreen();
+            stage.getScene().setRoot(loginRoot);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     private void onRegisterSwitchButtonClick(ActionEvent event){
-        applicationController.showRegisterPage();
+        showRegisterUserPage();
+    }
+
+    private void showRegisterUserPage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/easemanageinventory/register.fxml"));
+            Parent registerRoot = loader.load();
+
+            Stage stage = (Stage) username.getScene().getWindow();
+            stage.setHeight(400);
+            stage.setWidth(600);
+            stage.centerOnScreen();
+            stage.getScene().setRoot(registerRoot);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     private void onBackButtonClick(ActionEvent event){
-        applicationController.showLoginPage();
+        showLoginPage();
     }
 
     public void setAppController(ApplicationController applicationController) {
