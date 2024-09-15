@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -22,7 +23,8 @@ public class MainApplication extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("EaseManage Inventory - LOGIN");
-        this.primaryStage.initStyle(StageStyle.UNDECORATED);
+        Image icon = new Image(getClass().getResource("/Images/logo.png").toExternalForm());
+        this.primaryStage.getIcons().add(icon);
 
         initRootLayout();
         showLoginPage();
@@ -50,7 +52,7 @@ public class MainApplication extends Application {
 
         Scene scene = new Scene(rootLayout);
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
     }
 

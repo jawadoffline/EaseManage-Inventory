@@ -1,6 +1,7 @@
 package com.example.easemanageinventory.Controller;
 
 import com.example.easemanageinventory.Database.DBSystem;
+import com.example.easemanageinventory.Model.ItemsModel;
 import com.example.easemanageinventory.Model.User;
 import com.example.easemanageinventory.Model.UserModel;
 import javafx.collections.FXCollections;
@@ -11,9 +12,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Objects;
 
 public class AdminDashboardController{
@@ -27,11 +30,22 @@ public class AdminDashboardController{
     @FXML private TableColumn<User, String> userStatusColumn;
     @FXML private TextField username;
     @FXML private TextField password;
+    @FXML private TextField itemName;
+    @FXML private TextField itemCategory;
+    @FXML private TextField itemCode;
+    @FXML private TableView<ItemsModel> itemsTable;
+    @FXML private TableColumn<ItemsModel, Integer> itemCodeColumn;
+    @FXML private TableColumn<ItemsModel, String> itemNameColumn;
+    @FXML private TableColumn<ItemsModel, Integer> categoryColumn;
+    @FXML private TableColumn<ItemsModel, Integer> availableStockColumn;
+    @FXML private TableColumn<ItemsModel, Date> lastUpdateDateColumn;
+    @FXML private TableColumn<ItemsModel, Integer> currentStatusColumn;
+    @FXML private TableColumn<ItemsModel, Text> remarksColumn;
     @FXML private CheckBox showPassword;
 
 
 
-    @FXML private void initialize(){
+    @FXML private void initialize() throws SQLException {
         loggedUserName.setText("ADMIN");
         ObservableList<String> roles = FXCollections.observableArrayList("Admin","Manager","Viewer");
         userRole.setItems(roles);
@@ -42,6 +56,17 @@ public class AdminDashboardController{
         userStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         loadUserTable();
+
+        //loading main dashboard
+        itemCodeColumn.setCellValueFactory(new PropertyValueFactory<>("itemId"));
+        itemNameColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
+        availableStockColumn.setCellValueFactory(new PropertyValueFactory<>("availableStock"));
+        lastUpdateDateColumn.setCellValueFactory(new PropertyValueFactory<>("lastUpdateDate"));
+        currentStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        remarksColumn.setCellValueFactory(new PropertyValueFactory<>("remarks"));
+
+        loadItemsData();
 
         userListTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
@@ -54,6 +79,11 @@ public class AdminDashboardController{
                     }
                 }
         );
+    }
+
+    private void loadItemsData() throws SQLException {
+        ObservableList<ItemsModel> itemList = DBSystem.listItems();
+        itemsTable.setItems(itemList);
     }
 
     private void loadUserTable() {
@@ -154,5 +184,14 @@ public class AdminDashboardController{
         username.setEditable(true);
         password.setText(null);
         userRole.setValue(null);
+    }
+
+    public void onClearSearchClick(ActionEvent event) {
+    }
+
+    public void onShowLowStockClick(ActionEvent event) {
+    }
+
+    public void onSearchClick(ActionEvent event) {
     }
 }

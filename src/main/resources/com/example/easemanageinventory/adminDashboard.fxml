@@ -3,20 +3,24 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.easemanageinventory.Controller.AdminDashboardController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.easemanageinventory.Controller.AdminDashboardController">
    <children>
       <SplitPane dividerPositions="0.09416522241478913" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="694.0" prefWidth="1254.0">
         <items>
@@ -53,6 +57,34 @@
                <children>
                   <TabPane prefHeight="625.0" prefWidth="1254.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
+                        <Tab text="Main Dashboard">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" text="Item Name" />
+                                    <TextField fx:id="itemName" layoutX="84.0" layoutY="10.0" prefHeight="26.0" prefWidth="296.0" />
+                                    <Label layoutX="391.0" layoutY="14.0" text="Category" />
+                                    <TextField fx:id="itemCategory" layoutX="449.0" layoutY="9.0" prefHeight="26.0" prefWidth="169.0" />
+                                    <Label layoutX="627.0" layoutY="14.0" text="Item Code" />
+                                    <TextField fx:id="itemCode" layoutX="692.0" layoutY="9.0" prefHeight="26.0" prefWidth="169.0" />
+                                    <Button layoutX="873.0" layoutY="10.0" mnemonicParsing="false" onAction="#onSearchClick" prefHeight="26.0" prefWidth="66.0" text="Search" />
+                                    <Button layoutX="949.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClearSearchClick" prefHeight="26.0" prefWidth="82.0" text="Clear Search" />
+                                    <TableView fx:id="itemsTable" layoutX="14.0" layoutY="45.0" prefHeight="537.0" prefWidth="1223.0">
+                                      <columns>
+                                        <TableColumn fx:id="itemCodeColumn" prefWidth="84.80001163482666" text="Item Code" />
+                                        <TableColumn fx:id="itemNameColumn" prefWidth="278.4000549316406" text="Item Name" />
+                                          <TableColumn fx:id="categoryColumn" prefWidth="160.0" text="Category" />
+                                          <TableColumn fx:id="availableStockColumn" prefWidth="111.20001220703125" text="Available Stock" />
+                                          <TableColumn fx:id="lastUpdateDateColumn" prefWidth="128.79998779296875" text="Last Updated" />
+                                          <TableColumn fx:id="currentStatusColumn" prefWidth="117.5999755859375" text="Current Status" />
+                                          <TableColumn fx:id="remarksColumn" prefWidth="339.20000000000005" text="Remarks" />
+                                      </columns>
+                                    </TableView>
+                                    <Button layoutX="1041.0" layoutY="10.0" mnemonicParsing="false" onAction="#onShowLowStockClick" prefHeight="26.0" prefWidth="194.0" text="Show Low Stock Items" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
                       <Tab text="User Managment">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -120,7 +152,151 @@
                       </Tab>
                       <Tab text="Product Management">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Separator layoutX="624.0" layoutY="-9.0" orientation="VERTICAL" prefHeight="607.0" prefWidth="6.0" />
+                                    <Separator layoutX="310.0" layoutY="-6.0" orientation="VERTICAL" prefHeight="607.0" prefWidth="6.0" />
+                                    <Separator layoutX="944.0" layoutY="-6.0" orientation="VERTICAL" prefHeight="607.0" prefWidth="6.0" />
+                                    <Pane prefHeight="44.0" prefWidth="311.0" style="-fx-background-color: #90D5FF;">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="103.0" layoutY="9.0" text="Modify Item" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="311.0" prefHeight="44.0" prefWidth="314.0" style="-fx-background-color: #90D5FF;">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="9.0" text="Add Item" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="625.0" prefHeight="44.0" prefWidth="320.0" style="-fx-background-color: #90D5FF;">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="102.0" layoutY="9.0" text="Add Category" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <Pane layoutX="934.0" prefHeight="44.0" prefWidth="320.0" style="-fx-background-color: #90D5FF;">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="114.0" layoutY="9.0" text="Add Status" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="System Bold" size="18.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </Pane>
+                                    <ComboBox layoutX="16.0" layoutY="60.0" prefHeight="26.0" prefWidth="280.0" promptText="Select Item" />
+                                    <Label layoutX="16.0" layoutY="109.0" text="MODIFY STOCK">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Spinner editable="true" layoutX="132.0" layoutY="101.0" prefHeight="35.0" prefWidth="164.0" />
+                                    <Label layoutX="16.0" layoutY="156.0" text="SELECT DATE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker layoutX="132.0" layoutY="148.0" prefHeight="35.0" prefWidth="164.0" />
+                                    <ComboBox layoutX="16.0" layoutY="196.0" prefHeight="26.0" prefWidth="280.0" promptText="Select Category" />
+                                    <ComboBox layoutX="16.0" layoutY="236.0" prefHeight="26.0" prefWidth="280.0" promptText="Select Current Status" />
+                                    <Label layoutX="16.0" layoutY="273.0" text="REMARKS:">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea layoutX="16.0" layoutY="297.0" prefHeight="54.0" prefWidth="280.0" promptText="Enter remarks..." />
+                                    <Button layoutX="16.0" layoutY="363.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="280.0" text="Update">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <TextField layoutX="324.0" layoutY="84.0" prefHeight="26.0" prefWidth="288.0" />
+                                    <Text layoutX="324.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Item Name:" />
+                                    <ComboBox layoutX="324.0" layoutY="120.0" prefHeight="26.0" prefWidth="288.0" promptText="Select Category" />
+                                    <Text layoutX="324.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Stock" />
+                                    <TextField layoutX="394.0" layoutY="156.0" prefHeight="26.0" prefWidth="61.0" />
+                                    <Text layoutX="465.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+                                    <DatePicker layoutX="498.0" layoutY="156.0" prefHeight="26.0" prefWidth="113.0" />
+                                    <ComboBox layoutX="324.0" layoutY="193.0" prefHeight="26.0" prefWidth="288.0" promptText="Select Current Status" />
+                                    <TextArea layoutX="324.0" layoutY="230.0" prefHeight="54.0" prefWidth="288.0" promptText="Enter remarks..." />
+                                    <Button layoutX="324.0" layoutY="295.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="288.0" text="Add">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Text layoutX="637.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Category:" />
+                                    <TextField layoutX="638.0" layoutY="84.0" prefHeight="26.0" prefWidth="295.0" />
+                                    <Button layoutX="638.0" layoutY="120.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="295.0" text="Add">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="638.0" layoutY="156.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="295.0" text="Delete">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="324.0" layoutY="331.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="288.0" text="Delete">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Text layoutX="958.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Status:" />
+                                    <TextField layoutX="958.0" layoutY="84.0" prefHeight="26.0" prefWidth="283.0" />
+                                    <Button layoutX="958.0" layoutY="119.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="283.0" text="Add">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="958.0" layoutY="155.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="283.0" text="Delete">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="638.0" layoutY="193.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="295.0" text="View All">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="958.0" layoutY="193.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="283.0" text="View All">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <TableView layoutX="638.0" layoutY="231.0" prefHeight="355.0" prefWidth="295.0">
+                                      <columns>
+                                        <TableColumn prefWidth="65.60003662109375" style="-fx-background-color: #90D5FF;" text="ID" />
+                                        <TableColumn maxWidth="226.39996337890625" prefWidth="226.39996337890625" style="-fx-background-color: #90D5FF;" text="Categories" />
+                                      </columns>
+                                    </TableView>
+                                    <TableView layoutX="958.0" layoutY="231.0" prefHeight="355.0" prefWidth="283.0">
+                                       <columns>
+                                          <TableColumn prefWidth="65.60003662109375" style="-fx-background-color: #90D5FF;" text="ID" />
+                                          <TableColumn maxWidth="216.000048828125" prefWidth="216.000048828125" style="-fx-background-color: #90D5FF;" text="Status" />
+                                       </columns>
+                                    </TableView>
+                                    <TableView layoutX="324.0" layoutY="369.0" prefHeight="217.0" prefWidth="288.0">
+                                       <columns>
+                                          <TableColumn prefWidth="65.60003662109375" style="-fx-background-color: #90D5FF;" text="ID" />
+                                          <TableColumn maxWidth="220.79998779296875" prefWidth="220.79998779296875" style="-fx-background-color: #90D5FF;" text="Items" />
+                                       </columns>
+                                    </TableView>
+                                    <TableView layoutX="16.0" layoutY="400.0" prefHeight="187.0" prefWidth="280.0">
+                                       <columns>
+                                          <TableColumn prefWidth="185.60002899169922" style="-fx-background-color: #90D5FF;" text="Item" />
+                                          <TableColumn maxWidth="211.20001220703125" prefWidth="91.20001220703125" style="-fx-background-color: #90D5FF;" text="Current Stock" />
+                                       </columns>
+                                    </TableView>
+                                 </children></AnchorPane>
                         </content>
                       </Tab>
                     </tabs>

@@ -1,15 +1,14 @@
 package com.example.easemanageinventory.Database;
 
 import com.example.easemanageinventory.Controller.EaseManageSystemController;
+import com.example.easemanageinventory.Model.ItemsModel;
 import com.example.easemanageinventory.Model.User;
 import com.example.easemanageinventory.Model.UserModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.text.Text;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBSystem {
 
@@ -210,5 +209,42 @@ public class DBSystem {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static ObservableList<ItemsModel> listItems() throws SQLException {
+        ObservableList<ItemsModel> itemsList = FXCollections.observableArrayList();
+        ItemsModel itemsModel;
+        String query = "SELECT i.itemid, i.itemname, i.availablestock, i.lastupdatedate, i.remarks, c.category, s.status\n" +
+                "FROM items i\n" +
+                "JOIN categories c ON i.categoryid = c.id\n" +
+                "JOIN itemstatus s ON i.statusid = s.id;";
+        Connection connection = DBConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(query);
+        try{
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("itemid");
+                String itemname = resultSet.getString("itemname");
+                int availableStock = resultSet.getInt("availablestock");
+                Date lastUpdateDate = resultSet.getDate("lastupdatedate");
+                String remarks = resultSet.getString("remarks");
+                String category = resultSet.getString("category");
+                String status = resultSet.getString("status");
+
+                itemsModel = new ItemsModel();
+                itemsModel.setItemId(id);
+                itemsModel.setItemName(itemname);
+                itemsModel.setAvailableStock(availableStock);
+                itemsModel.setLastUpdateDate(lastUpdateDate);
+                itemsModel.setRemarks(remarks);
+                itemsModel.setCategoryName(category);
+                itemsModel.setStatus(status);
+                itemsList.add(itemsModel);
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return itemsList;
     }
 }
