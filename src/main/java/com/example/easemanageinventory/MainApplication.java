@@ -2,9 +2,7 @@ package com.example.easemanageinventory;
 
 import com.example.easemanageinventory.Controller.ApplicationController;
 import com.example.easemanageinventory.Controller.LoginController;
-import com.example.easemanageinventory.Controller.RegisterController;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -13,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainApplication extends Application {
 
@@ -23,7 +22,7 @@ public class MainApplication extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("EaseManage Inventory - LOGIN");
-        Image icon = new Image(getClass().getResource("/Images/logo.png").toExternalForm());
+        Image icon = new Image(Objects.requireNonNull(getClass().getResource("/Images/logo.png")).toExternalForm());
         this.primaryStage.getIcons().add(icon);
 
         initRootLayout();

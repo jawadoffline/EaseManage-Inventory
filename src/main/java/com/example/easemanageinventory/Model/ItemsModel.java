@@ -2,15 +2,18 @@ package com.example.easemanageinventory.Model;
 
 import javafx.scene.text.Text;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ItemsModel {
     private int itemId;
     private String itemName;
     private int availableStock;
-    private Date lastUpdateDate;
+    private LocalDate lastUpdateDate;
     private String remarks;
+    private int categoryId;
     private String categoryName;
+    private int statusId;
     private String status;
 
     public int getItemId() {
@@ -37,13 +40,6 @@ public class ItemsModel {
         this.availableStock = availableStock;
     }
 
-    public Date getLastUpdateDate() {
-        return lastUpdateDate;
-    }
-
-    public void setLastUpdateDate(Date lastUpdateDate) {
-        this.lastUpdateDate = lastUpdateDate;
-    }
 
     public String getRemarks() {
         return remarks;
@@ -68,5 +64,29 @@ public class ItemsModel {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public LocalDate getLastUpdateDate() {
+        return lastUpdateDate;
+    }
+
+    public void setLastUpdateDate(LocalDate lastUpdateDate) {
+        this.lastUpdateDate = lastUpdateDate;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 }
