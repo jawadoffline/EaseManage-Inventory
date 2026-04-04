@@ -1,0 +1,33 @@
+logging:
+  level:
+    root: INFO
+    com.easemanage: DEBUG
+    org.springframework.security: DEBUG
+
+app:
+  upload:
+    dir: ./uploads
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/easemanage_inventory
+    username: postgres
+    password: Test"123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true

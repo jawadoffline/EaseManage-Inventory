@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: easemanage-inventory
+
+  profiles:
+    active: dev
+
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  output:
+    ansi:
+      enabled: always
+
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  flyway:
+    enabled: false
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+  health:
+    mail:
+      enabled: false
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: EaseManage Inventory
+    version: 1.0.0
+    description: Enterprise Inventory Management System
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:easemanage-default-secret-key-change-in-production-must-be-at-least-256-bits-long}
+    access-token-expiration-ms: 900000       # 15 minutes
+    refresh-token-expiration-ms: 604800000   # 7 days
+
+  mail:
+    from: ${MAIL_FROM:noreply@easemanage.com}
+    enabled: ${MAIL_ENABLED:false}
+
+  cors:
+    allowed-origins: http://localhost:5173
