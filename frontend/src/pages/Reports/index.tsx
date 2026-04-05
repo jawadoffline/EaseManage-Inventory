@@ -37,7 +37,6 @@ import {
 } from 'recharts';
 import { useQuery } from '@tanstack/react-query';
 import { reportsApi } from '../../api/reports';
-import type { ProductValuation } from '../../api/reports';
 
 const { Title } = Typography;
 
@@ -315,8 +314,8 @@ const StockSummaryTab: React.FC = () => {
                   outerRadius={105}
                   paddingAngle={4}
                   dataKey="value"
-                  label={({ name, percent }) =>
-                    `${name} ${(percent * 100).toFixed(0)}%`
+                  label={({ name, percent }: { name: string; percent?: number }) =>
+                    `${name} ${((percent ?? 0) * 100).toFixed(0)}%`
                   }
                   labelLine={{ strokeWidth: 1 }}
                 >
@@ -385,8 +384,8 @@ const OrderSummaryTab: React.FC = () => {
           outerRadius={90}
           paddingAngle={4}
           dataKey="value"
-          label={({ name, percent }) =>
-            `${name} ${(percent * 100).toFixed(0)}%`
+          label={({ name, percent }: { name: string; percent?: number }) =>
+            `${name} ${((percent ?? 0) * 100).toFixed(0)}%`
           }
           labelLine={{ strokeWidth: 1 }}
         >

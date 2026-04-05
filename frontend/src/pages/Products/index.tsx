@@ -34,7 +34,6 @@ import { productsApi } from '../../api/products';
 import { categoriesApi } from '../../api/categories';
 import type { Product, ProductRequest } from '../../api/products';
 import type { Category } from '../../api/categories';
-import dayjs from 'dayjs';
 
 const { Title } = Typography;
 const { Search } = Input;

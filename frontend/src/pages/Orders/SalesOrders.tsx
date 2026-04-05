@@ -21,7 +21,6 @@ import {
   DownOutlined,
   MinusCircleOutlined,
   DownloadOutlined,
-  FilePdfOutlined,
 } from '@ant-design/icons';
 import { exportToCsv } from '../../utils/csvExport';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';

@@ -21,7 +21,6 @@ import {
   DeleteOutlined,
   DownOutlined,
   MinusCircleOutlined,
-  FilePdfOutlined,
   DownloadOutlined,
 } from '@ant-design/icons';
 import { exportToCsv } from '../../utils/csvExport';
